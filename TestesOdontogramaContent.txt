@@ -1,0 +1,141 @@
+package barnadsv.unisinos.br.as_2.dummy;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Helper class for providing sample content for user interfaces created by
+ * Android template wizards.
+ * <p>
+ * TODO: Replace all uses of this class before publishing your app.
+ */
+public class OdontogramaContent {
+
+    /**
+     * An array of sample (dummy) items.
+     */
+    public static final List<OdontogramaItem> ITEMS = new ArrayList<OdontogramaItem>();
+    public static Map<String, OdontogramaItem> ITEM_MAP = new HashMap<String, OdontogramaItem>();
+//    public static final String[] RACAS = new String[]{"Shih-Tzu", "Border Collie", "Buldogue", "Fox Terrier", "Fox Paulistinha", "Dogue Alemão", "Fila Brasileiro", "Doberman", "Pitbull"};
+//    public static final String[] NOMES = new String[]{"Pipoca", "Tiziu", "Bob", "Sacolé", "Pimpolho", "Zeca", "Peteca", "Sansão", "Rex"};
+//    public static final String[] PESOS = new String[]{"5kg", "8kg", "6kg", "5kg", "3kg", "20kg", "25kg", "15kg", "13kg"};
+//    public static final String[] NOMES_PROPRIETARIOS = new String[]{"Maria Alice", "Carlos Alberto", "Leonardo", "Eduarda", "José João", "Fernanda", "Tiago", "Ana Maria", "George"};
+
+    static {
+        OdontogramaItem odontograma1 = new OdontogramaItem("1", "12/05/2012 08:46:00", "Shih-Tzu", "Bob", "4kg", "Eduarda", "Data do Odontograma: 12/05/2012 08:46:00\nRaça: Shih-Tzu\nNome: Bob\nPeso: 4kg\nNome do Proprietário: Eduarda");
+        ITEMS.add(1, odontograma1);
+        ITEM_MAP.put("1", odontograma1);
+    }
+//    /**
+//     * A map of sample (Odontograma) items, by ID.
+//     */
+//    public static Map<String, OdontogramaItem> ITEM_MAP = new HashMap<String, OdontogramaItem>();
+//
+//    private static final int COUNT = 9;
+//
+//    static {
+//        // Add some sample items.
+//        for (int i = 1; i <= COUNT; i++) {
+//          addItem(createOdontogramaItem(i));
+//          makeItemContent(i);
+//        }
+//        orderItems(ITEMS);
+//        mapItems(ITEMS);
+//    }
+//
+//    private static void addItem(OdontogramaItem item) {
+//        ITEMS.add(item);
+//    }
+//
+//    private static void orderItems(List<OdontogramaItem> ITEMS) {
+//        Collections.sort(ITEMS);
+//    }
+//
+//    private static void mapItems(List<OdontogramaItem> ITEMS) {
+//        for (int i = 1; i <= COUNT; i++) {
+//            ITEMS.get(i).id = String.valueOf(i);
+//            ITEM_MAP.put(ITEMS.get(i).id, ITEMS.get(i));
+//        }
+//    }
+//
+//    private static OdontogramaItem createOdontogramaItem(int position) {
+//        return new OdontogramaItem(String.valueOf(0), makeRandomDateTime(), RACAS[position], NOMES[position], PESOS[position], NOMES_PROPRIETARIOS[position]);
+//    }
+//
+//    public static int randBetween(int start, int end) {
+//        return start + (int) Math.round(Math.random() * (end - start));
+//    }
+//
+//    public static String makeRandomDateTime() {
+//        GregorianCalendar gc = new GregorianCalendar();
+//        int year = randBetween(1990, 2016);
+//        gc.set(gc.YEAR, year);
+//        int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
+//        gc.set(gc.DAY_OF_YEAR, dayOfYear);
+//        int hour = randBetween(8, 18);
+//        int minute = randBetween(0, 59);
+//        int second = randBetween(0, 59);
+//        return gc.get(gc.DAY_OF_MONTH) + "/" + gc.get(gc.MONTH) + "/" + gc.get(gc.YEAR) + " " + String.format("%02d", hour) + ":" + String.format("%02d", minute) + ":" + String.format("%02d", second);
+//    }
+//
+//    public static void makeItemContent(int i) {
+//        String content = "Data do odontograma: " + ITEMS.get(i).dthOdontograma + "\n" +
+//                "Raça do animal: " + ITEMS.get(i).raca + "\n" +
+//                "Nome do animal: " + ITEMS.get(i).nome + "\n" +
+//                "Peso do animal: " + ITEMS.get(i).peso + "\n" +
+//                "Nome do proprietário: " + ITEMS.get(i).nomeProprietario + "\n";
+//        ITEMS.get(i).content = content;
+//    }
+
+    /**
+     * A dummy item representing a piece of content.
+     */
+    public static class OdontogramaItem implements Comparable<OdontogramaItem> {
+        public String id;
+        public final String dthOdontograma;
+        public final String raca;
+        public final String nome;
+        public final String peso;
+        public final String nomeProprietario;
+        public String content;
+
+        public OdontogramaItem(String id,
+                               String dthOdontograma,
+                               String raca,
+                               String nome,
+                               String peso,
+                               String nomeProprietario,
+                               String content) {
+            this.id = id;
+            this.dthOdontograma = dthOdontograma;
+            this.raca = raca;
+            this.nome = nome;
+            this.peso = peso;
+            this.nomeProprietario = nomeProprietario;
+            this.content = content;
+        }
+
+        @Override
+        public String toString() {
+            return dthOdontograma;
+        }
+
+        @Override
+        public int compareTo(OdontogramaItem odontogramaItem) {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+            int result = 0;
+            try {
+                return formatter.parse(this.dthOdontograma).compareTo(formatter.parse(odontogramaItem.dthOdontograma));
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return result;
+            }
+        }
+    }
+}
